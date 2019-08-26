@@ -18,6 +18,7 @@ public class AMDCPU implements CPUApi{
 		this.pins = pins;
 	}
 
+	@Override
 	public void calculate() {
 		System.out.println("now in AMD CPU,pins="+pins);
 	}

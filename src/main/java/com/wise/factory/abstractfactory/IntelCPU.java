@@ -18,7 +18,8 @@ public class IntelCPU implements CPUApi{
 		this.pins = pins;
 	}
 	
-	public void calculate() {
+	@Override
+    public void calculate() {
 		System.out.println("now in Intel CPU,pins="+pins);
 	}
 

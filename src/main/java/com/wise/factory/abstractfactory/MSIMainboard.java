@@ -18,7 +18,8 @@ public class MSIMainboard implements MainboardApi{
 		this.cpuHoles = cpuHoles;
 	}
 
-	public void installCPU() {
+	@Override
+    public void installCPU() {
 		System.out.println("now in MSIMainboard,cpuHoles="+cpuHoles);
 	}
 

@@ -7,7 +7,8 @@ package com.wise.factory.simple;
  */
 public class Impl2 implements Api {
 
-	public void hello(String name) {
+	@Override
+    public void hello(String name) {
 		System.out.println("Impl2 hello "+name);
 	}
 

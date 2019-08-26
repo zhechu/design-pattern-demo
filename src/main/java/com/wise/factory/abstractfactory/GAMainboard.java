@@ -18,6 +18,7 @@ public class GAMainboard implements MainboardApi {
 		this.cpuHoles = cpuHoles;
 	}
 
+	@Override
 	public void installCPU() {
 		System.out.println("now in GAMainboard,cpuHoles="+cpuHoles);
 	}
