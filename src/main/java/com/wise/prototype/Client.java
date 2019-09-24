@@ -1,6 +1,6 @@
 package com.wise.prototype;
 
-public class OrderClient {
+public class Client {
 
 	public static void main(String[] args) {
 		// 创建订单对象
