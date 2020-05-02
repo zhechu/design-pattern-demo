@@ -1,6 +1,5 @@
 package com.wise.state;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,8 +18,8 @@ public abstract class StateMachine {
      * @return
      */
     public State execute(State state, Event event) {
-        List<Transition> transitionList = state.getTransitions(event.getEventCode());
-        for (Transition transition : transitionList) {
+        Transition transition = state.getTransition(event.getEventCode());
+        if (transition != null) {
             return transition.execute(event);
         }
 

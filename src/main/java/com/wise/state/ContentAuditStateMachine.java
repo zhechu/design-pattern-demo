@@ -1,15 +1,15 @@
 package com.wise.state;
 
-import com.wise.state.bizparam.PassParam;
-import com.wise.state.bizparam.RefuseParam;
+import com.wise.state.dto.PassDTO;
+import com.wise.state.dto.RefuseDTO;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 简单的请假审批状态机
+ * 内容审核状态机
  */
-public class AuditStateMachine extends StateMachine {
+public class ContentAuditStateMachine extends StateMachine {
 
     @Override
     public Map<String, State> declareAllState() {
@@ -30,36 +30,40 @@ public class AuditStateMachine extends StateMachine {
     }
     
     /** 定义“通过”动作 */
-    public class PassTransition extends Transition {
+    public class PassTransition extends Transition<PassEvent> {
 
         public PassTransition(State currState, State nextState) {
             super(EventCodeContents.PASS, currState, nextState);
         }
 
         @Override
-        protected boolean doExecute(Event event) {
-            Object bizParam = event.getBizParam();
-            if (bizParam instanceof PassParam) {
-                PassParam passParam = (PassParam) bizParam;
-                System.out.println("执行通过操作参数:" + passParam);
-            }
+        protected boolean doExecute(PassEvent event) {
+            System.out.println("执行通过操作开始...");
 
-            System.out.println("执行通过操作...");
+            PassDTO passDTO = event.getParam();
+            System.out.println("执行通过操作参数:" + passDTO);
+
+            System.out.println("执行通过操作结束...");
             return true;
         }
         
     }
     
     /** 定义“拒绝”动作 */
-    public class RefuseTransition extends Transition {
+    public class RefuseTransition extends Transition<RefuseEvent> {
 
         public RefuseTransition(State currState, State nextState) {
             super(EventCodeContents.REFUSE, currState, nextState);
         }
 
         @Override
-        protected boolean doExecute(Event event) {
-            System.out.println("执行拒绝操作...");
+        protected boolean doExecute(RefuseEvent event) {
+            System.out.println("执行拒绝操作开始...");
+
+            RefuseDTO refuseDTO = event.getParam();
+            System.out.println("执行拒绝操作参数:" + refuseDTO);
+
+            System.out.println("执行拒绝操作结束...");
             return true;
         }
         
@@ -68,9 +72,9 @@ public class AuditStateMachine extends StateMachine {
     /**
      * 审核通过事件
      */
-    public static class PassEvent extends Event<PassParam> {
+    public static class PassEvent extends Event<PassDTO> {
 
-        public PassEvent(PassParam bizParam) {
+        public PassEvent(PassDTO bizParam) {
             super(EventCodeContents.PASS, bizParam);
         }
 
@@ -79,10 +83,10 @@ public class AuditStateMachine extends StateMachine {
     /**
      * 审核拒绝事件
      */
-    public static class RefuseEvent extends Event<RefuseParam> {
+    public static class RefuseEvent extends Event<RefuseDTO> {
 
-        public RefuseEvent(RefuseParam refuseParam) {
-            super(EventCodeContents.REFUSE, refuseParam);
+        public RefuseEvent(RefuseDTO refuseDTO) {
+            super(EventCodeContents.REFUSE, refuseDTO);
         }
 
     }
@@ -91,13 +95,19 @@ public class AuditStateMachine extends StateMachine {
     public class EventCodeContents {
         public static final String PASS = "审核通过";
         public static final String REFUSE = "审核拒绝";
+        public static final String UP = "上架";
+        public static final String DOWN = "下架";
+        public static final String DELETE_CONTENT = "删除内容";
     }
     
     /** 状态编码 */
     public class StateCodeContents {
-        public static final String PENDING = "待审批";
-        public static final String PASSED = "审批通过";
-        public static final String REFUSED = "审批拒绝";
+        public static final String PENDING = "待审核";
+        public static final String PASSED = "审核通过";
+        public static final String REFUSED = "审核拒绝";
+        public static final String UP = "上架";
+        public static final String DOWN = "下架";
+        public static final String DESTROY = "销毁";
     }
 
 }

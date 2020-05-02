@@ -1,4 +1,4 @@
-package com.wise.state.bizparam;
+package com.wise.state.dto;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
  * 审核拒绝业务参数
  */
 @Data
-public class RefuseParam {
+public class RefuseDTO {
 
     private String userName;
 

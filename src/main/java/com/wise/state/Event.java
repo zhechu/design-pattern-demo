@@ -1,7 +1,5 @@
 package com.wise.state;
 
-import java.util.Map;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,15 +16,15 @@ public abstract class Event<T> {
     /** 附属的业务参数 */
     @Getter
     @Setter
-    private T bizParam;
+    private T param;
 
     public Event(String eventCode) {
         this.eventCode = eventCode;
     }
 
-    public Event(String eventCode, T bizParam) {
+    public Event(String eventCode, T param) {
         this.eventCode = eventCode;
-        this.bizParam = bizParam;
+        this.param = param;
     }
 
 }

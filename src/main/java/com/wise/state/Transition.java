@@ -6,7 +6,7 @@ import lombok.Getter;
  * 动作基类
  * 维护触发该动作的事件，触发前状态，触发后状态，以及具体的动作内容
  */
-public abstract class Transition {
+public abstract class Transition<E extends Event> {
 
     /** 触发事件 */
     @Getter
@@ -31,7 +31,7 @@ public abstract class Transition {
      * @param event
      * @return
      */
-    public State execute(Event event) {
+    public State execute(E event) {
         System.out.println(String.format("当前是：%s 状态，执行：%s 操作后，流转成：%s 状态。", currState, eventCode, nextState));
         if (this.doExecute(event)) {
             return this.nextState;
@@ -45,6 +45,6 @@ public abstract class Transition {
      * @param event
      * @return
      */
-    protected abstract boolean doExecute(Event event);
+    protected abstract boolean doExecute(E event);
     
 }
