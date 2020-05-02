@@ -23,8 +23,9 @@ public abstract class StateMachine {
             return transition.execute(event);
         }
 
-        System.out.println(String.format("StateMachine[%s] Can not find transition for stateId[%s] eventCode[%s]",
+        System.out.println(String.format("StateMachine[%s] Can not find transition for stateCode[%s] eventCode[%s]",
                 this.getClass().getSimpleName(), state.getStateCode(), event.getEventCode()));
+
         return null;
     }
 

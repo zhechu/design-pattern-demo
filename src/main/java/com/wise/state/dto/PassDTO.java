@@ -8,8 +8,7 @@ import lombok.Data;
 @Data
 public class PassDTO {
 
-    private String userName;
-
-    private Integer age;
+    /** 内容ID */
+    private String contentId;
 
 }

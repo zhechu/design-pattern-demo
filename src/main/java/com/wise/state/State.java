@@ -12,7 +12,10 @@ public class State {
     private String stateCode;
 
     /**
-     * 当前状态下可允许执行的动作，状态与事件的关系：一对多，事件与行为的关系：一对一
+     * 当前状态下可允许执行的动作
+     * 状态与事件的关系：一对多
+     * 事件与行为的关系：一对一
+     * 状态与行为的间接关系：一对多
      */
     private Map<String, Transition> transitionMap = new HashMap<>();
 
